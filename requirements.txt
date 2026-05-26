@@ -1,0 +1,2 @@
+# setup_server.py only; jellyfin_hook.py uses stdlib (urllib).
+flask==3.1.0

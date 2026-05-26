@@ -1,0 +1,17 @@
+# local dev only. mirrors the truenas mount layout the hook expects.
+services:
+  hexos-jellyfin:
+    build: .
+    image: hexos-jellyfin:dev
+    container_name: hexos-jellyfin
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./data/config:/config
+      - ./data/cache:/cache
+      - ./data/movies:/movies
+      - ./data/shows:/shows
+      - ./data/music:/music
+    # uncomment to test intel/amd hardware transcoding detection:
+    # devices:
+    #   - /dev/dri:/dev/dri

@@ -1,0 +1,4 @@
+<!-- SWAP: drop the real HexOS text logo from hexosplextest here (same filename). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40" role="img" aria-label="HexOS">
+  <text x="0" y="30" font-family="Urbanist, sans-serif" font-weight="700" font-size="32" fill="#ffffff">HexOS</text>
+</svg>
