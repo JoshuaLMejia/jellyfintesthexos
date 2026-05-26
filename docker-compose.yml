@@ -1,9 +1,9 @@
 # local dev only. mirrors the truenas mount layout the hook expects.
 services:
-  hexos-jellyfin:
+  jellyfintesthexos:
     build: .
-    image: hexos-jellyfin:dev
-    container_name: hexos-jellyfin
+    image: jellyfintesthexos:dev
+    container_name: jellyfintesthexos
     ports:
       - "8096:8096"
     volumes:

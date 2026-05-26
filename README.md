@@ -1,4 +1,4 @@
-# hexos-jellyfin
+# jellyfintesthexos
 
 HexOS-branded first-run setup shim for Jellyfin. Wraps the official
 `jellyfin/jellyfin` image (the same image the TrueNAS community catalog
@@ -63,7 +63,7 @@ docker compose down && rm -rf data/config data/cache
 
 ## Image
 
-Published to `ghcr.io/joshualmejia/hexosjellyfintest` by the GitHub Actions
+Published to `ghcr.io/joshualmejia/jellyfintesthexos` by the GitHub Actions
 workflow on push to `main` and on tags.
 
 ## Branding assets
