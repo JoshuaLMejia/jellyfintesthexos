@@ -360,7 +360,23 @@
       .catch(function () {});
   }
 
+  // clear stale jellyfin web-client state from this origin so a reinstall
+  // (new serverid) doesn't hit a "server mismatch" against a cached old one.
+  // the setup page keeps its own state in js vars, not storage, so this is safe.
+  function clearJellyfinState() {
+    try {
+      var kill = ['jellyfin_credentials', '_deviceId2', 'enableAutoLogin', 'events'];
+      // also drop any per-server keys ("<serverId> - <setting>").
+      for (var i = localStorage.length - 1; i >= 0; i--) {
+        var k = localStorage.key(i);
+        if (k && (kill.indexOf(k) !== -1 || / - /.test(k))) { localStorage.removeItem(k); }
+      }
+      sessionStorage.clear();
+    } catch (e) { /* storage may be unavailable; ignore */ }
+  }
+
   function done() {
+    clearJellyfinState();
     document.getElementById('setup-title').textContent = 'Setup complete';
     var hint = document.getElementById('setup-hint');
     hint.className = 'final-msg';
@@ -378,6 +394,7 @@
   }
 
   document.getElementById('open-btn').addEventListener('click', function () {
+    clearJellyfinState();
     window.location.href = '/';
   });
 
