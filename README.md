@@ -63,7 +63,7 @@ docker compose down && rm -rf data/config data/cache
 
 ## Image
 
-Published to `ghcr.io/joshualmejia/hexos-jellyfin` by the GitHub Actions
+Published to `ghcr.io/joshualmejia/hexosjellyfintest` by the GitHub Actions
 workflow on push to `main` and on tags.
 
 ## Branding assets

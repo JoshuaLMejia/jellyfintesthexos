@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE: ghcr.io/joshualmejia/hexos-jellyfin
+  IMAGE: ghcr.io/joshualmejia/hexosjellyfintest
 
 jobs:
   docker:
