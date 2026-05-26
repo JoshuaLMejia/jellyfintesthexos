@@ -5,14 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Set up Jellyfin &middot; HexOS</title>
 
-<!-- SWAP: replace Urbanist.woff2 with the exact font files from hexosplextest if desired. -->
 <style>
+  /* hexos urbanist weights; drop replacements into static/ with these names. */
   @font-face {
-    font-family: 'Urbanist';
-    font-style: normal;
-    font-weight: 400 700;
-    font-display: swap;
-    src: url('/hexos-static/Urbanist.woff2') format('woff2');
+    font-family: 'Urbanist'; font-style: normal; font-weight: 100; font-display: swap;
+    src: url('/hexos-static/Urbanist-Thin.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Urbanist'; font-style: normal; font-weight: 300; font-display: swap;
+    src: url('/hexos-static/Urbanist-Light.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Urbanist'; font-style: normal; font-weight: 400; font-display: swap;
+    src: url('/hexos-static/Urbanist-Regular.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Urbanist'; font-style: normal; font-weight: 500; font-display: swap;
+    src: url('/hexos-static/Urbanist-Medium.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Urbanist'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url('/hexos-static/Urbanist-Bold.woff') format('woff');
   }
 
   /* -- hexos palette -- */
@@ -72,7 +85,7 @@
     color: #fff;
     font-family: inherit;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: background 0.15s ease;
   }
