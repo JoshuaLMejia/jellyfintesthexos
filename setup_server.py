@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
 # hexos-jellyfin setup server.
 # serves the branded first-run ui on :8096 until the user clicks "set up".
-# on start it generates the admin password, hands the browser the
-# credentials, then drops a signal file so the entrypoint hands off to
-# real jellyfin. the configurator (jellyfin_hook.py) does the api work.
+# on start it hands the browser the fixed admin credentials, then drops
+# a signal file so the entrypoint hands off to real jellyfin. the
+# configurator (jellyfin_hook.py) does the api work.
 
 import json
 import os
-import secrets
 import threading
 
 from flask import Flask, jsonify, render_template, request
 
 # -- config --
+# fixed credentials for testing; everyone with reach to the server can log in.
 ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "ABCD1234!"
 SIGNAL_FILE = "/tmp/jellyfin-setup-go"
 CREDS_FILE = "/tmp/hexos-creds.json"
 SENTINEL_PRODUCT = "HexOS Setup"
@@ -27,7 +28,7 @@ app = Flask(
 
 # -- one-shot state --
 _lock = threading.Lock()
-_state = {"started": False, "username": ADMIN_USERNAME, "password": None}
+_state = {"started": False, "username": ADMIN_USERNAME, "password": ADMIN_PASSWORD}
 
 
 # -- no-cache everywhere so the browser never serves a stale screen --
@@ -60,7 +61,7 @@ def index():
     return render_template(
         "index.html",
         username=_state["username"],
-        password=_state["password"] or "",
+        password=_state["password"],
     )
 
 
@@ -69,7 +70,6 @@ def setup_start():
     with _lock:
         if not _state["started"]:
             _state["started"] = True
-            _state["password"] = secrets.token_urlsafe(18)  # ~24 chars
             _write_creds(_state["username"], _state["password"])
             # defer the signal so this response reaches the browser first.
             threading.Timer(0.5, _signal_handoff).start()
